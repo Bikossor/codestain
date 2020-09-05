@@ -4,7 +4,7 @@
   "description": "A static code highlighting tool.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./test/codestain.test.js",
     "build": "tsc"
   },
   "repository": {
