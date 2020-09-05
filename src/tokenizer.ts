@@ -123,8 +123,12 @@ function tokenizer(input: string) {
                 char = input[++current];
             } while (LETTER.test(char))
 
+            const KEYWORDS = /break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield/;
+
             tokens.push({
-                type: 'name',
+                type: KEYWORDS.test(value)
+                    ? 'keyword'
+                    : 'name',
                 value
             });
 
