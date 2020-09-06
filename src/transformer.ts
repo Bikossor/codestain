@@ -1,3 +1,6 @@
+import { Token } from "./Interfaces/Token";
+import { TokenType } from "./Interfaces/TokenType";
+
 function transformer(tokens: Array<Token>) {
     let current = 0;
     let transformed = [];
@@ -10,28 +13,28 @@ function transformer(tokens: Array<Token>) {
         let token = tokens[current];
 
         switch (token.type) {
-            case 'name':
+            case TokenType.Name:
                 transformed.push(
                     `<span style="color:#4FC1FF">${token.value}</span>`
                 );
 
                 current++;
                 break;
-            case 'keyword':
+            case TokenType.Keyword:
                 transformed.push(
                     `<span style="color:#499cd5">${token.value}</span>`
                 );
 
                 current++;
                 break;
-            case 'string':
+            case TokenType.String:
                 transformed.push(
                     `<span style="color:#ce9178">"${token.value}"</span>`
                 );
 
                 current++;
                 break;
-            case 'number':
+            case TokenType.Number:
                 transformed.push(
                     `<span style="color:#b5cea8">${token.value}</span>`
                 )
