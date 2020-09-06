@@ -1,3 +1,6 @@
+import { Token } from "./Interfaces/Token";
+import { TokenType } from "./Interfaces/TokenType";
+
 function tokenizer(input: string) {
     let current = 0;
     let tokens: Array<Token> = [];
@@ -7,7 +10,7 @@ function tokenizer(input: string) {
 
         if (char === '(') {
             tokens.push({
-                type: 'paren',
+                type: TokenType.Parenthesis,
                 value: '(',
             });
 
@@ -17,7 +20,7 @@ function tokenizer(input: string) {
 
         if (char === ')') {
             tokens.push({
-                type: 'paren',
+                type: TokenType.Parenthesis,
                 value: ')',
             });
 
@@ -27,7 +30,7 @@ function tokenizer(input: string) {
 
         if (char === '=') {
             tokens.push({
-                type: 'equals',
+                type: TokenType.Equals,
                 value: '=',
             });
 
@@ -37,7 +40,7 @@ function tokenizer(input: string) {
 
         if (char === ';') {
             tokens.push({
-                type: 'semicolon',
+                type: TokenType.Semicolon,
                 value: ';',
             });
 
@@ -47,7 +50,7 @@ function tokenizer(input: string) {
 
         if (char === '>') {
             tokens.push({
-                type: 'greater-than',
+                type: TokenType.GreaterThan,
                 value: '>',
             });
 
@@ -57,7 +60,7 @@ function tokenizer(input: string) {
 
         if (char === '.') {
             tokens.push({
-                type: 'dot',
+                type: TokenType.Dot,
                 value: '.',
             });
 
@@ -69,7 +72,7 @@ function tokenizer(input: string) {
 
         if (WHITESPACE.test(char)) {
             tokens.push({
-                type: 'whitespace',
+                type: TokenType.Whitespace,
                 value: char,
             });
 
@@ -88,7 +91,7 @@ function tokenizer(input: string) {
             } while (NUMBER.test(char))
 
             tokens.push({
-                type: 'number',
+                type: TokenType.Number,
                 value
             });
 
@@ -106,7 +109,7 @@ function tokenizer(input: string) {
 
             char = input[++current];
             tokens.push({
-                type: 'string',
+                type: TokenType.String,
                 value
             });
 
@@ -127,8 +130,8 @@ function tokenizer(input: string) {
 
             tokens.push({
                 type: KEYWORDS.test(value)
-                    ? 'keyword'
-                    : 'name',
+                    ? TokenType.Keyword
+                    : TokenType.Name,
                 value
             });
 
