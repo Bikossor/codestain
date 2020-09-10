@@ -1,5 +1,6 @@
 export enum TokenType {
-    Parenthesis = 'paren',
+    ParenthesisLeft = 'paren-left',
+    ParenthesisRight = 'paren-right',
     Equals = 'equals',
     Semicolon = 'semicolon',
     GreaterThan = 'greater-than',

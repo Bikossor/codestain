@@ -10,7 +10,7 @@ function tokenizer(input: string) {
 
         if (char === '(') {
             tokens.push({
-                type: TokenType.Parenthesis,
+                type: TokenType.ParenthesisLeft,
                 value: '(',
             });
 
@@ -20,7 +20,7 @@ function tokenizer(input: string) {
 
         if (char === ')') {
             tokens.push({
-                type: TokenType.Parenthesis,
+                type: TokenType.ParenthesisRight,
                 value: ')',
             });
 
