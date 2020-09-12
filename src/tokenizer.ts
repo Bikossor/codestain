@@ -28,10 +28,60 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === '{') {
+            tokens.push({
+                type: TokenType.BraceLeft,
+                value: '{',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '}') {
+            tokens.push({
+                type: TokenType.BraceRight,
+                value: '}',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '[') {
+            tokens.push({
+                type: TokenType.BracketLeft,
+                value: '[',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === ']') {
+            tokens.push({
+                type: TokenType.BracketRight,
+                value: ']',
+            });
+
+            current++;
+            continue;
+        }
+
         if (char === '=') {
             tokens.push({
                 type: TokenType.Equals,
                 value: '=',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === ',') {
+            tokens.push({
+                type: TokenType.Comma,
+                value: ',',
             });
 
             current++;
@@ -48,10 +98,130 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === ':') {
+            tokens.push({
+                type: TokenType.Colon,
+                value: ':',
+            });
+
+            current++;
+            continue;
+        }
+
         if (char === '>') {
             tokens.push({
                 type: TokenType.GreaterThan,
                 value: '>',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '/') {
+            tokens.push({
+                type: TokenType.Slash,
+                value: '/',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '\\') {
+            tokens.push({
+                type: TokenType.Backslash,
+                value: '\\',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '+') {
+            tokens.push({
+                type: TokenType.Plus,
+                value: '+',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '-') {
+            tokens.push({
+                type: TokenType.Minus,
+                value: '-',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '%') {
+            tokens.push({
+                type: TokenType.Percent,
+                value: '%',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '*') {
+            tokens.push({
+                type: TokenType.Asterisk,
+                value: '*',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '!') {
+            tokens.push({
+                type: TokenType.ExclamationMark,
+                value: '!',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '?') {
+            tokens.push({
+                type: TokenType.QuestionMark,
+                value: '?',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '$') {
+            tokens.push({
+                type: TokenType.Dollar,
+                value: '$',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '&') {
+            tokens.push({
+                type: TokenType.Ampersand,
+                value: '&',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '`') {
+            tokens.push({
+                type: TokenType.Backtick,
+                value: '`',
             });
 
             current++;
