@@ -66,7 +66,8 @@ function parser(tokens: Array<Token>) {
         }
 
         if (token.type === TokenType.Dot ||
-            token.type === TokenType.Semicolon) {
+            token.type === TokenType.Semicolon ||
+            token.type === TokenType.Comma) {
             current++;
 
             return {
@@ -75,10 +76,7 @@ function parser(tokens: Array<Token>) {
             };
         }
 
-        if (
-            token.type === TokenType.Parenthesis &&
-            token.value === '('
-        ) {
+        if (token.type === TokenType.ParenthesisLeft) {
 
             token = tokens[++current];
 
@@ -89,17 +87,14 @@ function parser(tokens: Array<Token>) {
             };
 
             // TODO: Returns only the ending paren as the name
-            if (token.type === TokenType.Parenthesis && token.value === ')') {
+            if (token.type === TokenType.ParenthesisRight) {
                 current++;
                 return node;
             }
 
             // token = tokens[++current];
 
-            while (
-                (token.type !== TokenType.Parenthesis) ||
-                (token.type === TokenType.Parenthesis && token.value !== ')')
-            ) {
+            while (token.type !== TokenType.ParenthesisRight) {
                 node.params.push(walk());
                 token = tokens[current];
             }
