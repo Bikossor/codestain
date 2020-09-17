@@ -10,8 +10,8 @@ const expectedTokens = [
     { type: 'whitespace', value: ' ' },
     { type: 'equals', value: '=' },
     { type: 'whitespace', value: ' ' },
-    { type: 'paren', value: '(' },
-    { type: 'paren', value: ')' },
+    { type: 'paren-left', value: '(' },
+    { type: 'paren-right', value: ')' },
     { type: 'whitespace', value: ' ' },
     { type: 'equals', value: '=' },
     { type: 'greater-than', value: '>' },
@@ -19,9 +19,9 @@ const expectedTokens = [
     { type: 'name', value: 'console' },
     { type: 'dot', value: '.' },
     { type: 'name', value: 'log' },
-    { type: 'paren', value: '(' },
+    { type: 'paren-left', value: '(' },
     { type: 'string', value: 'Hello World!' },
-    { type: 'paren', value: ')' },
+    { type: 'paren-right', value: ')' },
     { type: 'semicolon', value: ';' }
 ];
 

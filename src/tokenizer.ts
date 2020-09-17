@@ -10,7 +10,7 @@ function tokenizer(input: string) {
 
         if (char === '(') {
             tokens.push({
-                type: TokenType.Parenthesis,
+                type: TokenType.ParenthesisLeft,
                 value: '(',
             });
 
@@ -20,8 +20,48 @@ function tokenizer(input: string) {
 
         if (char === ')') {
             tokens.push({
-                type: TokenType.Parenthesis,
+                type: TokenType.ParenthesisRight,
                 value: ')',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '{') {
+            tokens.push({
+                type: TokenType.BraceLeft,
+                value: '{',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '}') {
+            tokens.push({
+                type: TokenType.BraceRight,
+                value: '}',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '[') {
+            tokens.push({
+                type: TokenType.BracketLeft,
+                value: '[',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === ']') {
+            tokens.push({
+                type: TokenType.BracketRight,
+                value: ']',
             });
 
             current++;
@@ -38,6 +78,16 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === ',') {
+            tokens.push({
+                type: TokenType.Comma,
+                value: ',',
+            });
+
+            current++;
+            continue;
+        }
+
         if (char === ';') {
             tokens.push({
                 type: TokenType.Semicolon,
@@ -48,10 +98,130 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === ':') {
+            tokens.push({
+                type: TokenType.Colon,
+                value: ':',
+            });
+
+            current++;
+            continue;
+        }
+
         if (char === '>') {
             tokens.push({
                 type: TokenType.GreaterThan,
                 value: '>',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '/') {
+            tokens.push({
+                type: TokenType.Slash,
+                value: '/',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '\\') {
+            tokens.push({
+                type: TokenType.Backslash,
+                value: '\\',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '+') {
+            tokens.push({
+                type: TokenType.Plus,
+                value: '+',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '-') {
+            tokens.push({
+                type: TokenType.Minus,
+                value: '-',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '%') {
+            tokens.push({
+                type: TokenType.Percent,
+                value: '%',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '*') {
+            tokens.push({
+                type: TokenType.Asterisk,
+                value: '*',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '!') {
+            tokens.push({
+                type: TokenType.ExclamationMark,
+                value: '!',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '?') {
+            tokens.push({
+                type: TokenType.QuestionMark,
+                value: '?',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '$') {
+            tokens.push({
+                type: TokenType.Dollar,
+                value: '$',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '&') {
+            tokens.push({
+                type: TokenType.Ampersand,
+                value: '&',
+            });
+
+            current++;
+            continue;
+        }
+
+        if (char === '`') {
+            tokens.push({
+                type: TokenType.Backtick,
+                value: '`',
             });
 
             current++;
@@ -124,9 +294,9 @@ function tokenizer(input: string) {
             do {
                 value += char;
                 char = input[++current];
-            } while (LETTER.test(char))
+            } while (char && LETTER.test(char))
 
-            const KEYWORDS = /break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield/;
+            const KEYWORDS = /break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|function|if|import|in|instanceof|let|new|return|super|switch|this|throw|try|typeof|var|void|while|with|yield/;
 
             tokens.push({
                 type: KEYWORDS.test(value)
