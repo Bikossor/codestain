@@ -1,4 +1,5 @@
 const assert = require('assert');
+const { parser } = require('../dist/parser');
 const { tokenizer } = require('../dist/tokenizer');
 
 const input = `const sayHello = () => console.log("Hello World!");`;
@@ -25,6 +26,85 @@ const expectedTokens = [
     { type: 'semicolon', value: ';' }
 ];
 
-assert.deepStrictEqual(tokenizer(input), expectedTokens);
+const actualTokens = tokenizer(input);
+
+assert.deepStrictEqual(actualTokens, expectedTokens);
+
+const expectedAst = {
+    type: "Program",
+    body: [
+        {
+            type: "Keyword",
+            value: "const"
+        },
+        {
+            type: "Whitespace",
+            value: " "
+        },
+        {
+            type: "Identifier",
+            value: "sayHello"
+        },
+        {
+            type: "Whitespace",
+            value: " "
+        },
+        {
+            type: "Operator",
+            value: "="
+        },
+        {
+            type: "Whitespace",
+            value: " "
+        },
+        {
+            type: "CallExpression",
+            name: null,
+            params: []
+        },
+        {
+            type: "Whitespace",
+            value: " "
+        },
+        {
+            type: "Operator",
+            value: "="
+        },
+        {
+            type: "Operator",
+            value: ">"
+        },
+        {
+            type: "Whitespace",
+            value: " "
+        },
+        {
+            type: "Identifier",
+            value: "console"
+        },
+        {
+            type: "Separator",
+            value: "."
+        },
+        {
+            type: "CallExpression",
+            name: "log",
+            params: [
+                {
+                    type: "StringLiteral",
+                    value: "Hello World!"
+                }
+            ]
+        },
+        {
+            type: "Separator",
+            value: ";"
+        }
+    ]
+};
+
+const actualAst = parser(actualTokens);
+
+assert.deepStrictEqual(actualAst, expectedAst);
 
 console.log('All tests passed!');
