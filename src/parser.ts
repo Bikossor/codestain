@@ -47,7 +47,32 @@ function parser(tokens: Array<Token>) {
         }
 
         if (token.type === TokenType.Name) {
-            current++;
+            const identifier = tokens[current];
+
+            // Identifier of a CallExpression
+            if (tokens[++current].type === TokenType.ParenthesisLeft) {
+                token = tokens[++current];
+
+                let node = {
+                    type: 'CallExpression',
+                    name: identifier.value,
+                    params: [],
+                };
+
+                if (token.type === TokenType.ParenthesisRight) {
+                    current++;
+                    return node;
+                }
+
+                while (token.type !== TokenType.ParenthesisRight) {
+                    node.params.push(walk());
+                    token = tokens[current];
+                }
+
+                current++;
+
+                return node;
+            }
 
             return {
                 type: 'Identifier',
@@ -82,17 +107,14 @@ function parser(tokens: Array<Token>) {
 
             let node = {
                 type: 'CallExpression',
-                name: token.value,
+                name: null,
                 params: [],
             };
 
-            // TODO: Returns only the ending paren as the name
             if (token.type === TokenType.ParenthesisRight) {
                 current++;
                 return node;
             }
-
-            // token = tokens[++current];
 
             while (token.type !== TokenType.ParenthesisRight) {
                 node.params.push(walk());
