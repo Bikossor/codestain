@@ -14,6 +14,7 @@ export enum TokenType {
     Whitespace = 'whitespace',
     Number = 'number',
     String = 'string',
+    Boolean = 'boolean',
     Keyword = 'keyword',
     Name = 'name',
     Slash = 'slash',
