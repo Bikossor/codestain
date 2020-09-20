@@ -28,6 +28,15 @@ function parser(tokens: Array<Token>) {
             };
         }
 
+        if (token.type === TokenType.Boolean) {
+            current++;
+
+            return {
+                type: 'BooleanLiteral',
+                value: token.value,
+            };
+        }
+
         if (token.type === TokenType.Keyword) {
             current++;
 
