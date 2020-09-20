@@ -57,9 +57,10 @@ function parser(tokens: Array<Token>) {
 
         if (token.type === TokenType.Name) {
             const identifier = tokens[current];
+            const nextToken = tokens[++current];
 
             // Identifier of a CallExpression
-            if (tokens[++current].type === TokenType.ParenthesisLeft) {
+            if (nextToken && nextToken.type === TokenType.ParenthesisLeft) {
                 token = tokens[++current];
 
                 let node = {
