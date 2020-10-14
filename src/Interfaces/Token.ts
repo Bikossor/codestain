@@ -1,4 +1,4 @@
-import { TokenType } from "./TokenType";
+import { TokenType } from "../enums/TokenType";
 
 export interface Token {
     type: TokenType;
