@@ -1,3 +1,6 @@
+import { AbstractSyntaxTree } from "./Interfaces/AbstractSyntaxTree";
+import { Node } from "./Interfaces/Node";
+import { NodeType } from "./Interfaces/NodeType";
 import { Token } from "./Interfaces/Token";
 import { TokenType } from "./Interfaces/TokenType";
 
@@ -5,7 +8,7 @@ function parser(tokens: Array<Token>) {
 
     let current = 0;
 
-    function walk() {
+    function walk(): Node {
 
         let token = tokens[current];
 
@@ -14,7 +17,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'NumberLiteral',
+                type: NodeType.NumberLiteral,
                 value: token.value,
             };
         }
@@ -23,7 +26,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'StringLiteral',
+                type: NodeType.StringLiteral,
                 value: token.value,
             };
         }
@@ -32,7 +35,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'BooleanLiteral',
+                type: NodeType.BooleanLiteral,
                 value: token.value,
             };
         }
@@ -41,7 +44,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'Keyword',
+                type: NodeType.Keyword,
                 value: token.value,
             };
         }
@@ -50,7 +53,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'Whitespace',
+                type: NodeType.Whitespace,
                 value: token.value,
             };
         }
@@ -64,7 +67,7 @@ function parser(tokens: Array<Token>) {
                 token = tokens[++current];
 
                 let node = {
-                    type: 'CallExpression',
+                    type: NodeType.CallExpression,
                     name: identifier.value,
                     params: [],
                 };
@@ -85,7 +88,7 @@ function parser(tokens: Array<Token>) {
             }
 
             return {
-                type: 'Identifier',
+                type: NodeType.Identifier,
                 value: token.value,
             };
         }
@@ -95,7 +98,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'Operator',
+                type: NodeType.Operator,
                 value: token.value,
             };
         }
@@ -106,7 +109,7 @@ function parser(tokens: Array<Token>) {
             current++;
 
             return {
-                type: 'Separator',
+                type: NodeType.Separator,
                 value: token.value,
             };
         }
@@ -116,7 +119,7 @@ function parser(tokens: Array<Token>) {
             token = tokens[++current];
 
             let node = {
-                type: 'CallExpression',
+                type: NodeType.CallExpression,
                 name: null,
                 params: [],
             };
@@ -139,7 +142,7 @@ function parser(tokens: Array<Token>) {
         throw new TypeError(token.type);
     }
 
-    let ast = {
+    let ast: AbstractSyntaxTree = {
         type: 'Program',
         body: [],
     };
