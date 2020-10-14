@@ -1,8 +1,8 @@
 import { AbstractSyntaxTree } from "./Interfaces/AbstractSyntaxTree";
 import { Node } from "./Interfaces/Node";
-import { NodeType } from "./Interfaces/NodeType";
+import { NodeType } from "./enums/NodeType";
 import { Token } from "./Interfaces/Token";
-import { TokenType } from "./Interfaces/TokenType";
+import { TokenType } from "./enums/TokenType";
 
 function parser(tokens: Array<Token>) {
 

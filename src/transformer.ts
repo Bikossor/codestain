@@ -1,5 +1,5 @@
 import { Token } from "./Interfaces/Token";
-import { TokenType } from "./Interfaces/TokenType";
+import { TokenType } from "./enums/TokenType";
 
 function transformer(tokens: Array<Token>) {
     let current = 0;
