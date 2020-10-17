@@ -1,10 +1,10 @@
-import { AbstractSyntaxTree } from "./Interfaces/AbstractSyntaxTree";
-import { Node } from "./Interfaces/Node";
-import { NodeType } from "./enums/NodeType";
-import { Token } from "./Interfaces/Token";
-import { TokenType } from "./enums/TokenType";
+import { AbstractSyntaxTree } from "../Interfaces/AbstractSyntaxTree";
+import { Node } from "../Interfaces/Node";
+import { NodeType } from "../enums/NodeType";
+import { Token } from "../Interfaces/Token";
+import { TokenType } from "../enums/TokenType";
 
-function parser(tokens: Array<Token>) {
+function JavaScriptParser(tokens: Array<Token>) {
 
     let current = 0;
 
@@ -155,5 +155,5 @@ function parser(tokens: Array<Token>) {
 }
 
 export {
-    parser,
+    JavaScriptParser,
 }
