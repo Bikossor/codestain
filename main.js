@@ -1,10 +1,7 @@
-const { tokenizer } = require('./dist/tokenizer');
-const { parser } = require('./dist/parser');
+const { Codestain } = require('./dist/Codestain');
 
 const example = `const sayHello`;
 
 console.log(
-    parser(
-        tokenizer(example)
-    )
+    Codestain("JavaScript", example)
 );

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parser } = require('../dist/parser');
+const { JavaScriptParser } = require('../dist/parser/JavaScript');
 const { tokenizer } = require('../dist/tokenizer');
 
 const input = `const sayHello = () => console.log("Hello World!");`;
@@ -34,76 +34,76 @@ const expectedAst = {
     type: "Program",
     body: [
         {
-            type: "Keyword",
+            type: "keyword",
             value: "const"
         },
         {
-            type: "Whitespace",
+            type: "whitespace",
             value: " "
         },
         {
-            type: "Identifier",
+            type: "identifier",
             value: "sayHello"
         },
         {
-            type: "Whitespace",
+            type: "whitespace",
             value: " "
         },
         {
-            type: "Operator",
+            type: "operator",
             value: "="
         },
         {
-            type: "Whitespace",
+            type: "whitespace",
             value: " "
         },
         {
-            type: "CallExpression",
+            type: "call-expression",
             name: null,
             params: []
         },
         {
-            type: "Whitespace",
+            type: "whitespace",
             value: " "
         },
         {
-            type: "Operator",
+            type: "operator",
             value: "="
         },
         {
-            type: "Operator",
+            type: "operator",
             value: ">"
         },
         {
-            type: "Whitespace",
+            type: "whitespace",
             value: " "
         },
         {
-            type: "Identifier",
+            type: "identifier",
             value: "console"
         },
         {
-            type: "Separator",
+            type: "separator",
             value: "."
         },
         {
-            type: "CallExpression",
+            type: "call-expression",
             name: "log",
             params: [
                 {
-                    type: "StringLiteral",
+                    type: "string-literal",
                     value: "Hello World!"
                 }
             ]
         },
         {
-            type: "Separator",
+            type: "separator",
             value: ";"
         }
     ]
 };
 
-const actualAst = parser(actualTokens);
+const actualAst = JavaScriptParser(actualTokens);
 
 assert.deepStrictEqual(actualAst, expectedAst);
 

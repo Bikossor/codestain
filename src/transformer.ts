@@ -1,49 +1,53 @@
-import { Token } from "./Interfaces/Token";
-import { TokenType } from "./Interfaces/TokenType";
+import { NodeType } from "./enums/NodeType";
+import { AbstractSyntaxTree } from "./Interfaces/AbstractSyntaxTree";
 
-function transformer(tokens: Array<Token>) {
+function transformer(ast: AbstractSyntaxTree) {
     let current = 0;
-    let transformed = [];
+    let transformed: Array<string> = [];
 
     transformed.push(
         `<div style="color:#fff">`
     );
 
-    while (current < tokens.length) {
-        let token = tokens[current];
+    const nodes = ast.body;
 
-        switch (token.type) {
-            case TokenType.Name:
+    while (current < nodes.length) {
+        const node = nodes[current];
+
+        switch (node.type) {
+            case NodeType.Identifier:
                 transformed.push(
-                    `<span style="color:#4FC1FF">${token.value}</span>`
+                    `<span style="color:#4FC1FF">${node.value}</span>`
                 );
 
                 current++;
                 break;
-            case TokenType.Keyword:
+            case NodeType.Keyword:
                 transformed.push(
-                    `<span style="color:#499cd5">${token.value}</span>`
+                    `<span style="color:#499cd5">${node.value}</span>`
                 );
 
                 current++;
                 break;
-            case TokenType.String:
+            case NodeType.StringLiteral:
                 transformed.push(
-                    `<span style="color:#ce9178">"${token.value}"</span>`
+                    `<span style="color:#ce9178">"${node.value}"</span>`
                 );
 
                 current++;
                 break;
-            case TokenType.Number:
+            case NodeType.NumberLiteral:
                 transformed.push(
-                    `<span style="color:#b5cea8">${token.value}</span>`
-                )
+                    `<span style="color:#b5cea8">${node.value}</span>`
+                );
+
                 current++;
                 break;
             default:
                 transformed.push(
-                    token.value
+                    node.value
                 );
+
                 current++;
                 break;
         }
