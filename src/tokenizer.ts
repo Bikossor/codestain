@@ -296,20 +296,8 @@ function tokenizer(input: string) {
                 char = input[++current];
             } while (char && LETTER.test(char))
 
-            const KEYWORDS = /^break$|^case$|^catch$|^class$|^const$|^continue$|^debugger$|^default$|^delete$|^do$|^else$|^export$|^extends$|^finally$|^for$|^function$|^if$|^import$|^in$|^instanceof$|^let$|^new$|^return$|^super$|^switch$|^this$|^throw$|^try$|^typeof$|^var$|^void$|^while$|^with$|^yield$/;
-            const BOOLEAN_LITERALS = /^true$|^false$/;
-
-            let tokenType = TokenType.Name;
-
-            if (KEYWORDS.test(value)) {
-                tokenType = TokenType.Keyword;
-            }
-            else if (BOOLEAN_LITERALS.test(value)) {
-                tokenType = TokenType.Boolean;
-            }
-
             tokens.push({
-                type: tokenType,
+                type: TokenType.Name,
                 value
             });
 

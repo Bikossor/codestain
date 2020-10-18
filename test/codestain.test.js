@@ -5,7 +5,7 @@ const { tokenizer } = require('../dist/tokenizer');
 const input = `const sayHello = () => console.log("Hello World!");`;
 
 const expectedTokens = [
-    { type: 'keyword', value: 'const' },
+    { type: 'name', value: 'const' },
     { type: 'whitespace', value: ' ' },
     { type: 'name', value: 'sayHello' },
     { type: 'whitespace', value: ' ' },

@@ -31,24 +31,6 @@ function JavaScriptParser(tokens: Array<Token>) {
             };
         }
 
-        if (token.type === TokenType.Boolean) {
-            current++;
-
-            return {
-                type: NodeType.BooleanLiteral,
-                value: token.value,
-            };
-        }
-
-        if (token.type === TokenType.Keyword) {
-            current++;
-
-            return {
-                type: NodeType.Keyword,
-                value: token.value,
-            };
-        }
-
         if (token.type === TokenType.Whitespace) {
             current++;
 
@@ -87,8 +69,20 @@ function JavaScriptParser(tokens: Array<Token>) {
                 return node;
             }
 
+            const KEYWORDS = /^break$|^case$|^catch$|^class$|^const$|^continue$|^debugger$|^default$|^delete$|^do$|^else$|^export$|^extends$|^finally$|^for$|^function$|^if$|^import$|^in$|^instanceof$|^let$|^new$|^return$|^super$|^switch$|^this$|^throw$|^try$|^typeof$|^var$|^void$|^while$|^with$|^yield$/;
+            const BOOLEAN_LITERALS = /^true$|^false$/;
+
+            let tokenType = NodeType.Identifier;
+
+            if (KEYWORDS.test(token.value)) {
+                tokenType = NodeType.Keyword;
+            }
+            else if (BOOLEAN_LITERALS.test(token.value)) {
+                tokenType = NodeType.BooleanLiteral;
+            }
+
             return {
-                type: NodeType.Identifier,
+                type: tokenType,
                 value: token.value,
             };
         }
