@@ -101,7 +101,8 @@ function JavaScriptParser(tokens: Array<Token>) {
             token.type === TokenType.Colon ||
             token.type === TokenType.Semicolon ||
             token.type === TokenType.Comma ||
-            token.type === TokenType.BraceLeft) {
+            token.type === TokenType.BraceLeft ||
+            token.type === TokenType.BraceRight) {
             current++;
 
             return {
