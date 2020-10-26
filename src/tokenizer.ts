@@ -286,6 +286,24 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === '\'') {
+            let value = '';
+            char = input[++current];
+
+            do {
+                value += char;
+                char = input[++current];
+            } while (char !== '\'')
+
+            char = input[++current];
+            tokens.push({
+                type: TokenType.String,
+                value
+            });
+
+            continue;
+        }
+
         const LETTER = /[a-z]/i;
 
         if (LETTER.test(char)) {
