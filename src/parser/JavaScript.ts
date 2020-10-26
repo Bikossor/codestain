@@ -99,7 +99,8 @@ function JavaScriptParser(tokens: Array<Token>) {
 
         if (token.type === TokenType.Dot ||
             token.type === TokenType.Semicolon ||
-            token.type === TokenType.Comma) {
+            token.type === TokenType.Comma ||
+            token.type === TokenType.BraceLeft) {
             current++;
 
             return {
