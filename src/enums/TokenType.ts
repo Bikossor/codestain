@@ -9,6 +9,7 @@ export enum TokenType {
     Comma = 'comma',
     Semicolon = 'semicolon',
     Colon = 'colon',
+    LessThan = 'less-than',
     GreaterThan = 'greater-than',
     Dot = 'dot',
     Whitespace = 'whitespace',
