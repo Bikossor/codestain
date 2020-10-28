@@ -88,6 +88,7 @@ function JavaScriptParser(tokens: Array<Token>) {
         }
 
         if (token.type === TokenType.Equals ||
+            token.type === TokenType.LessThan ||
             token.type === TokenType.GreaterThan) {
             current++;
 

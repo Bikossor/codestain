@@ -108,6 +108,16 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === '<') {
+            tokens.push({
+                type: TokenType.LessThan,
+                value: '<',
+            });
+
+            current++;
+            continue;
+        }
+
         if (char === '>') {
             tokens.push({
                 type: TokenType.GreaterThan,
