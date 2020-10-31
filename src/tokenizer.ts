@@ -108,6 +108,16 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === '<') {
+            tokens.push({
+                type: TokenType.LessThan,
+                value: '<',
+            });
+
+            current++;
+            continue;
+        }
+
         if (char === '>') {
             tokens.push({
                 type: TokenType.GreaterThan,
@@ -286,6 +296,24 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === '\'') {
+            let value = '';
+            char = input[++current];
+
+            do {
+                value += char;
+                char = input[++current];
+            } while (char !== '\'')
+
+            char = input[++current];
+            tokens.push({
+                type: TokenType.String,
+                value
+            });
+
+            continue;
+        }
+
         const LETTER = /[a-z]/i;
 
         if (LETTER.test(char)) {
@@ -296,20 +324,8 @@ function tokenizer(input: string) {
                 char = input[++current];
             } while (char && LETTER.test(char))
 
-            const KEYWORDS = /^break$|^case$|^catch$|^class$|^const$|^continue$|^debugger$|^default$|^delete$|^do$|^else$|^export$|^extends$|^finally$|^for$|^function$|^if$|^import$|^in$|^instanceof$|^let$|^new$|^return$|^super$|^switch$|^this$|^throw$|^try$|^typeof$|^var$|^void$|^while$|^with$|^yield$/;
-            const BOOLEAN_LITERALS = /^true$|^false$/;
-
-            let tokenType = TokenType.Name;
-
-            if (KEYWORDS.test(value)) {
-                tokenType = TokenType.Keyword;
-            }
-            else if (BOOLEAN_LITERALS.test(value)) {
-                tokenType = TokenType.Boolean;
-            }
-
             tokens.push({
-                type: tokenType,
+                type: TokenType.Name,
                 value
             });
 
