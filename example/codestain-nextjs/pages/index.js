@@ -1,4 +1,20 @@
 import Head from 'next/head'
+import { Codestain as CodestainFunc } from "../../../dist/Codestain";
+
+const Codestain = (props) => {
+  const rawHtml = {
+    __html: CodestainFunc(props.language, props.children)
+  };
+  return (
+    <pre
+      style={{
+        fontSize: '1.5rem',
+        fontFamily: 'Consolas'
+      }}
+      dangerouslySetInnerHTML={rawHtml} // TODO (al): codestain will emit JSX in the future. This approach isn't final.
+    ></pre>
+  );
+}
 
 export default function Home() {
   return (
@@ -12,6 +28,9 @@ export default function Home() {
         <h1 className="title">
             codestain - Next.js example
         </h1>
+        <Codestain language="JavaScript">
+          {`const greeting = "Hello world!";`}
+        </Codestain>
       </main>
 
       <footer></footer>
@@ -24,6 +43,7 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background: #1e1e1e;
         }
 
         main {
@@ -59,6 +79,7 @@ export default function Home() {
           margin: 0;
           line-height: 1.2;
           font-size: 3rem;
+          color: #fff;
         }
 
         .title,
