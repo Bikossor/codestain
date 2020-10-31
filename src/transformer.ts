@@ -1,3 +1,4 @@
+import { Node } from "./Interfaces/Node";
 import { NodeType } from "./enums/NodeType";
 import { AbstractSyntaxTree } from "./Interfaces/AbstractSyntaxTree";
 
@@ -11,46 +12,44 @@ function transformer(ast: AbstractSyntaxTree) {
 
     const nodes = ast.body;
 
-    while (current < nodes.length) {
-        const node = nodes[current];
+    function walk(node: Node = nodes[current]) {
 
         switch (node.type) {
             case NodeType.Identifier:
-                transformed.push(
-                    `<span style="color:#4FC1FF">${node.value}</span>`
-                );
-
                 current++;
-                break;
+
+                return `<span style="color:#4FC1FF">${node.value}</span>`;
             case NodeType.Keyword:
-                transformed.push(
-                    `<span style="color:#499cd5">${node.value}</span>`
-                );
-
                 current++;
-                break;
+
+                return `<span style="color:#499cd5">${node.value}</span>`;
             case NodeType.StringLiteral:
-                transformed.push(
-                    `<span style="color:#ce9178">"${node.value}"</span>`
-                );
-
                 current++;
-                break;
+
+                return `<span style="color:#ce9178">"${node.value}"</span>`;
             case NodeType.NumberLiteral:
-                transformed.push(
-                    `<span style="color:#b5cea8">${node.value}</span>`
-                );
-
                 current++;
-                break;
+
+                return `<span style="color:#b5cea8">${node.value}</span>`;
+            case NodeType.CallExpression:
+                current++;
+
+                const transformedParams = node.params.map(param => {
+                    return walk(param);
+                }).join('');
+
+                return `<span style="color:#DCDCAA">${node.name || ''}(${transformedParams})</span>`;
+            case NodeType.Separator:
+                current++;
+                return `<span style="color:lime">${node.value}</span>`;
             default:
-                transformed.push(
-                    node.value
-                );
-
                 current++;
-                break;
+                return node.value;
         }
+    }
+
+    while (current < nodes.length) {
+        transformed.push(walk());
     }
 
     transformed.push(
