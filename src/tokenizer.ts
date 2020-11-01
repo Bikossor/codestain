@@ -316,13 +316,13 @@ function tokenizer(input: string) {
 
         const LETTER = /[a-z]/i;
 
-        if (LETTER.test(char)) {
+        if (LETTER.test(char)) { // TODO (al): Can every name in every language start with a character?
             let value = '';
 
             do {
                 value += char;
                 char = input[++current];
-            } while (char && LETTER.test(char))
+            } while (char && /\S/.test(char))
 
             tokens.push({
                 type: TokenType.Name,
