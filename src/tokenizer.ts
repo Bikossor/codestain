@@ -322,7 +322,7 @@ function tokenizer(input: string) {
             do {
                 value += char;
                 char = input[++current];
-            } while (char && /\S/.test(char))
+            } while (char && (LETTER.test(char) || NUMBER.test(char)))
 
             tokens.push({
                 type: TokenType.Name,
