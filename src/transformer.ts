@@ -12,27 +12,25 @@ function transformer(ast: AbstractSyntaxTree) {
 
     const nodes = ast.body;
 
-    function walk(node: Node = nodes[current]) {
+    function walk(paramNode?: Node) {
+        const node = paramNode == null
+            ? nodes[current++]
+            : paramNode;
 
         switch (node.type) {
             case NodeType.Identifier:
-                current++;
 
                 return `<span style="color:#4FC1FF">${node.value}</span>`;
             case NodeType.Keyword:
-                current++;
 
                 return `<span style="color:#499cd5">${node.value}</span>`;
             case NodeType.StringLiteral:
-                current++;
 
                 return `<span style="color:#ce9178">"${node.value}"</span>`;
             case NodeType.NumberLiteral:
-                current++;
 
                 return `<span style="color:#b5cea8">${node.value}</span>`;
             case NodeType.CallExpression:
-                current++;
 
                 const transformedParams = node.params.map(param => {
                     return walk(param);
@@ -40,10 +38,8 @@ function transformer(ast: AbstractSyntaxTree) {
 
                 return `<span style="color:#DCDCAA">${node.name || ''}(${transformedParams})</span>`;
             case NodeType.Separator:
-                current++;
                 return `<span style="color:lime">${node.value}</span>`;
             default:
-                current++;
                 return node.value;
         }
     }
