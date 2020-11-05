@@ -32,9 +32,7 @@ function transformer(ast: AbstractSyntaxTree) {
                 return `<span style="color:#b5cea8">${node.value}</span>`;
             case NodeType.CallExpression:
 
-                const transformedParams = node.params.map(param => {
-                    return walk(param);
-                }).join('');
+                const transformedParams = node.params.map(param => walk(param)).join('');
 
                 return `<span style="color:#DCDCAA">${node.name || ''}(${transformedParams})</span>`;
             case NodeType.Separator:
