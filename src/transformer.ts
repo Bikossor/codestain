@@ -7,7 +7,7 @@ function transformer(ast: AbstractSyntaxTree) {
     let transformed: Array<string> = [];
 
     transformed.push(
-        `<div style="color:#fff">`
+        `<pre style="color:#fff; background: #1e1e1e; padding: 2rem; font-family: Consolas, Monospace;">`
     );
 
     const nodes = ast.body;
@@ -47,7 +47,7 @@ function transformer(ast: AbstractSyntaxTree) {
     }
 
     transformed.push(
-        `</div>`
+        `</pre>`
     );
 
     return transformed;
