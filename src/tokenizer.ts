@@ -314,6 +314,16 @@ function tokenizer(input: string) {
             continue;
         }
 
+        if (char === '#') {
+            tokens.push({
+                type: TokenType.Hash,
+                value: '#',
+            });
+
+            current++;
+            continue;
+        }
+
         const LETTER = /[a-z]/i;
 
         if (LETTER.test(char)) { // TODO (al): Can every name in every language start with a character?
