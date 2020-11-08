@@ -27,4 +27,5 @@ export enum TokenType {
     Dollar = 'dollar',
     Ampersand = 'ampersand',
     Backtick = 'backtick',
+    Hash = 'hash',
 }
