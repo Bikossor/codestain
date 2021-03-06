@@ -1,8 +1,5 @@
-import { AbstractSyntaxTree } from "../Interfaces/AbstractSyntaxTree";
-import { Node } from "../Interfaces/Node";
-import { NodeType } from "../enums/NodeType";
-import { Token } from "../Interfaces/Token";
-import { TokenType } from "../enums/TokenType";
+import { AbstractSyntaxTree, Token, Node } from "../Interfaces";
+import { NodeType, TokenType } from "../enums";
 
 function JavaScriptParser(tokens: Array<Token>) {
 

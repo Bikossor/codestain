@@ -1,6 +1,5 @@
-import { Node } from "./Interfaces/Node";
-import { NodeType } from "./enums/NodeType";
-import { AbstractSyntaxTree } from "./Interfaces/AbstractSyntaxTree";
+import { Node, AbstractSyntaxTree } from "./Interfaces";
+import { NodeType } from "./enums";
 
 function transformer(ast: AbstractSyntaxTree) {
     let current = 0;
