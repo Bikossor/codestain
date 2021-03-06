@@ -1,4 +1,4 @@
-import { NodeType } from "../enums/NodeType";
+import { NodeType } from "../enums";
 
 export interface Node {
     type: NodeType;

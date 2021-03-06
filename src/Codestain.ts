@@ -1,4 +1,4 @@
-import { InputLanguage } from "./types/InputLanguage";
+import { InputLanguage } from "./types";
 
 import { tokenizer } from "./tokenizer";
 import { JavaScriptParser } from "./parser";

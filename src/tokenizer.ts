@@ -1,5 +1,5 @@
-import { Token } from "./Interfaces/Token";
-import { TokenType } from "./enums/TokenType";
+import { Token } from "./Interfaces";
+import { TokenType } from "./enums";
 
 function tokenizer(input: string) {
     let current = 0;
