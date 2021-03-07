@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { JavaScriptParser } = require('../dist/parser/JavaScript');
+const { createParser } = require('../dist/factories');
 const { tokenizer } = require('../dist/tokenizer');
 
 const input = `const sayHello = () => console.log("Hello World!");`;
@@ -103,7 +103,8 @@ const expectedAst = {
     ]
 };
 
-const actualAst = JavaScriptParser(actualTokens);
+const javaScriptParser = createParser("JavaScript");
+const actualAst = javaScriptParser.parse(actualTokens);
 
 assert.deepStrictEqual(actualAst, expectedAst);
 
