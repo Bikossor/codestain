@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./test/codestain.test.js",
-    "build": "tsc"
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Bikossor/codestain/issues"
   },
-  "homepage": "https://github.com/Bikossor/codestain#readme"
+  "homepage": "https://github.com/Bikossor/codestain#readme",
+  "devDependencies": {
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "typescript": "^4.2.3"
+  }
 }
