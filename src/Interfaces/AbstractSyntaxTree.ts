@@ -1,6 +1,6 @@
 import { Node } from "./Node";
 
 export interface AbstractSyntaxTree {
-    type: string;
-    body: Array<Node>;
+  type: string;
+  body: Array<Node>;
 }
