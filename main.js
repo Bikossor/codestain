@@ -1,4 +1,4 @@
-const { Codestain } = require('./dist/Codestain');
+const { Codestain } = require("./dist/Codestain");
 
 const example = `
     const getNumberFromInput = (number) => {
@@ -29,6 +29,4 @@ const example = `
     }
 `;
 
-console.log(
-    Codestain("JavaScript", example)
-);
+console.log(Codestain("JavaScript", example));

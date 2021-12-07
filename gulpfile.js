@@ -9,20 +9,7 @@ gulp.task("clean-up", function () {
 });
 
 gulp.task("build-typescript", function () {
-    return tsProject
-        .src()
-        .pipe(
-            tsProject()
-        )
-        .js
-        .pipe(
-            gulp.dest("dist")
-        );
+    return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist"));
 });
 
-gulp.task("default",
-    gulp.series(
-        "clean-up",
-        "build-typescript",
-    )
-);
+gulp.task("default", gulp.series("clean-up", "build-typescript"));

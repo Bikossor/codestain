@@ -1,29 +1,29 @@
-const assert = require('assert');
-const { createParser } = require('../dist/factories');
-const { tokenizer } = require('../dist/tokenizer');
+const assert = require("assert");
+const { createParser } = require("../dist/factories");
+const { tokenizer } = require("../dist/tokenizer");
 
 const input = `const sayHello = () => console.log("Hello World!");`;
 
 const expectedTokens = [
-    { type: 'name', value: 'const' },
-    { type: 'whitespace', value: ' ' },
-    { type: 'name', value: 'sayHello' },
-    { type: 'whitespace', value: ' ' },
-    { type: 'equals', value: '=' },
-    { type: 'whitespace', value: ' ' },
-    { type: 'paren-left', value: '(' },
-    { type: 'paren-right', value: ')' },
-    { type: 'whitespace', value: ' ' },
-    { type: 'equals', value: '=' },
-    { type: 'greater-than', value: '>' },
-    { type: 'whitespace', value: ' ' },
-    { type: 'name', value: 'console' },
-    { type: 'dot', value: '.' },
-    { type: 'name', value: 'log' },
-    { type: 'paren-left', value: '(' },
-    { type: 'string', value: 'Hello World!' },
-    { type: 'paren-right', value: ')' },
-    { type: 'semicolon', value: ';' }
+    { type: "name", value: "const" },
+    { type: "whitespace", value: " " },
+    { type: "name", value: "sayHello" },
+    { type: "whitespace", value: " " },
+    { type: "equals", value: "=" },
+    { type: "whitespace", value: " " },
+    { type: "paren-left", value: "(" },
+    { type: "paren-right", value: ")" },
+    { type: "whitespace", value: " " },
+    { type: "equals", value: "=" },
+    { type: "greater-than", value: ">" },
+    { type: "whitespace", value: " " },
+    { type: "name", value: "console" },
+    { type: "dot", value: "." },
+    { type: "name", value: "log" },
+    { type: "paren-left", value: "(" },
+    { type: "string", value: "Hello World!" },
+    { type: "paren-right", value: ")" },
+    { type: "semicolon", value: ";" },
 ];
 
 const actualTokens = tokenizer(input);
@@ -35,56 +35,56 @@ const expectedAst = {
     body: [
         {
             type: "keyword",
-            value: "const"
+            value: "const",
         },
         {
             type: "whitespace",
-            value: " "
+            value: " ",
         },
         {
             type: "identifier",
-            value: "sayHello"
+            value: "sayHello",
         },
         {
             type: "whitespace",
-            value: " "
+            value: " ",
         },
         {
             type: "operator",
-            value: "="
+            value: "=",
         },
         {
             type: "whitespace",
-            value: " "
+            value: " ",
         },
         {
             type: "call-expression",
             name: null,
-            params: []
+            params: [],
         },
         {
             type: "whitespace",
-            value: " "
+            value: " ",
         },
         {
             type: "operator",
-            value: "="
+            value: "=",
         },
         {
             type: "operator",
-            value: ">"
+            value: ">",
         },
         {
             type: "whitespace",
-            value: " "
+            value: " ",
         },
         {
             type: "identifier",
-            value: "console"
+            value: "console",
         },
         {
             type: "separator",
-            value: "."
+            value: ".",
         },
         {
             type: "call-expression",
@@ -92,15 +92,15 @@ const expectedAst = {
             params: [
                 {
                     type: "string-literal",
-                    value: "Hello World!"
-                }
-            ]
+                    value: "Hello World!",
+                },
+            ],
         },
         {
             type: "separator",
-            value: ";"
-        }
-    ]
+            value: ";",
+        },
+    ],
 };
 
 const javaScriptParser = createParser("JavaScript");
@@ -108,4 +108,4 @@ const actualAst = javaScriptParser.parse(actualTokens);
 
 assert.deepStrictEqual(actualAst, expectedAst);
 
-console.log('All tests passed!');
+console.log("All tests passed!");

@@ -1,27 +1,30 @@
 {
-  "name": "codestain",
-  "version": "0.0.0",
-  "description": "A static code highlighting tool.",
-  "main": "index.js",
-  "scripts": {
-    "test": "node ./test/codestain.test.js",
-    "build": "gulp"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bikossor/codestain.git"
-  },
-  "keywords": [],
-  "author": "André Lichtenthäler",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/Bikossor/codestain/issues"
-  },
-  "homepage": "https://github.com/Bikossor/codestain#readme",
-  "devDependencies": {
-    "del": "^6.0.0",
-    "gulp": "^4.0.2",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "typescript": "^4.2.3"
-  }
+    "name": "codestain",
+    "version": "0.0.0",
+    "description": "A static code highlighting tool.",
+    "main": "index.js",
+    "scripts": {
+        "test": "node ./test/codestain.test.js",
+        "build": "gulp",
+        "prettier:check": "npx prettier --check .",
+        "prettier:write": "npx prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Bikossor/codestain.git"
+    },
+    "keywords": [],
+    "author": "André Lichtenthäler",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/Bikossor/codestain/issues"
+    },
+    "homepage": "https://github.com/Bikossor/codestain#readme",
+    "devDependencies": {
+        "del": "^6.0.0",
+        "gulp": "^4.0.2",
+        "gulp-typescript": "^6.0.0-alpha.1",
+        "prettier": "2.5.1",
+        "typescript": "^4.2.3"
+    }
 }

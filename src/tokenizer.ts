@@ -8,240 +8,240 @@ function tokenizer(input: string) {
     while (current < input.length) {
         let char = input[current];
 
-        if (char === '(') {
+        if (char === "(") {
             tokens.push({
                 type: TokenType.ParenthesisLeft,
-                value: '(',
+                value: "(",
             });
 
             current++;
             continue;
         }
 
-        if (char === ')') {
+        if (char === ")") {
             tokens.push({
                 type: TokenType.ParenthesisRight,
-                value: ')',
+                value: ")",
             });
 
             current++;
             continue;
         }
 
-        if (char === '{') {
+        if (char === "{") {
             tokens.push({
                 type: TokenType.BraceLeft,
-                value: '{',
+                value: "{",
             });
 
             current++;
             continue;
         }
 
-        if (char === '}') {
+        if (char === "}") {
             tokens.push({
                 type: TokenType.BraceRight,
-                value: '}',
+                value: "}",
             });
 
             current++;
             continue;
         }
 
-        if (char === '[') {
+        if (char === "[") {
             tokens.push({
                 type: TokenType.BracketLeft,
-                value: '[',
+                value: "[",
             });
 
             current++;
             continue;
         }
 
-        if (char === ']') {
+        if (char === "]") {
             tokens.push({
                 type: TokenType.BracketRight,
-                value: ']',
+                value: "]",
             });
 
             current++;
             continue;
         }
 
-        if (char === '=') {
+        if (char === "=") {
             tokens.push({
                 type: TokenType.Equals,
-                value: '=',
+                value: "=",
             });
 
             current++;
             continue;
         }
 
-        if (char === ',') {
+        if (char === ",") {
             tokens.push({
                 type: TokenType.Comma,
-                value: ',',
+                value: ",",
             });
 
             current++;
             continue;
         }
 
-        if (char === ';') {
+        if (char === ";") {
             tokens.push({
                 type: TokenType.Semicolon,
-                value: ';',
+                value: ";",
             });
 
             current++;
             continue;
         }
 
-        if (char === ':') {
+        if (char === ":") {
             tokens.push({
                 type: TokenType.Colon,
-                value: ':',
+                value: ":",
             });
 
             current++;
             continue;
         }
 
-        if (char === '<') {
+        if (char === "<") {
             tokens.push({
                 type: TokenType.LessThan,
-                value: '<',
+                value: "<",
             });
 
             current++;
             continue;
         }
 
-        if (char === '>') {
+        if (char === ">") {
             tokens.push({
                 type: TokenType.GreaterThan,
-                value: '>',
+                value: ">",
             });
 
             current++;
             continue;
         }
 
-        if (char === '/') {
+        if (char === "/") {
             tokens.push({
                 type: TokenType.Slash,
-                value: '/',
+                value: "/",
             });
 
             current++;
             continue;
         }
 
-        if (char === '\\') {
+        if (char === "\\") {
             tokens.push({
                 type: TokenType.Backslash,
-                value: '\\',
+                value: "\\",
             });
 
             current++;
             continue;
         }
 
-        if (char === '+') {
+        if (char === "+") {
             tokens.push({
                 type: TokenType.Plus,
-                value: '+',
+                value: "+",
             });
 
             current++;
             continue;
         }
 
-        if (char === '-') {
+        if (char === "-") {
             tokens.push({
                 type: TokenType.Minus,
-                value: '-',
+                value: "-",
             });
 
             current++;
             continue;
         }
 
-        if (char === '%') {
+        if (char === "%") {
             tokens.push({
                 type: TokenType.Percent,
-                value: '%',
+                value: "%",
             });
 
             current++;
             continue;
         }
 
-        if (char === '*') {
+        if (char === "*") {
             tokens.push({
                 type: TokenType.Asterisk,
-                value: '*',
+                value: "*",
             });
 
             current++;
             continue;
         }
 
-        if (char === '!') {
+        if (char === "!") {
             tokens.push({
                 type: TokenType.ExclamationMark,
-                value: '!',
+                value: "!",
             });
 
             current++;
             continue;
         }
 
-        if (char === '?') {
+        if (char === "?") {
             tokens.push({
                 type: TokenType.QuestionMark,
-                value: '?',
+                value: "?",
             });
 
             current++;
             continue;
         }
 
-        if (char === '$') {
+        if (char === "$") {
             tokens.push({
                 type: TokenType.Dollar,
-                value: '$',
+                value: "$",
             });
 
             current++;
             continue;
         }
 
-        if (char === '&') {
+        if (char === "&") {
             tokens.push({
                 type: TokenType.Ampersand,
-                value: '&',
+                value: "&",
             });
 
             current++;
             continue;
         }
 
-        if (char === '`') {
+        if (char === "`") {
             tokens.push({
                 type: TokenType.Backtick,
-                value: '`',
+                value: "`",
             });
 
             current++;
             continue;
         }
 
-        if (char === '.') {
+        if (char === ".") {
             tokens.push({
                 type: TokenType.Dot,
-                value: '.',
+                value: ".",
             });
 
             current++;
@@ -263,61 +263,61 @@ function tokenizer(input: string) {
         const NUMBER = /[0-9]/;
 
         if (NUMBER.test(char)) {
-            let value = '';
+            let value = "";
 
             do {
                 value += char;
                 char = input[++current];
-            } while (NUMBER.test(char))
+            } while (NUMBER.test(char));
 
             tokens.push({
                 type: TokenType.Number,
-                value
+                value,
             });
 
             continue;
         }
 
         if (char === '"') {
-            let value = '';
+            let value = "";
             char = input[++current];
 
             do {
                 value += char;
                 char = input[++current];
-            } while (char !== '"')
+            } while (char !== '"');
 
             char = input[++current];
             tokens.push({
                 type: TokenType.String,
-                value
+                value,
             });
 
             continue;
         }
 
-        if (char === '\'') {
-            let value = '';
+        if (char === "'") {
+            let value = "";
             char = input[++current];
 
             do {
                 value += char;
                 char = input[++current];
-            } while (char !== '\'')
+            } while (char !== "'");
 
             char = input[++current];
             tokens.push({
                 type: TokenType.String,
-                value
+                value,
             });
 
             continue;
         }
 
-        if (char === '#') {
+        if (char === "#") {
             tokens.push({
                 type: TokenType.Hash,
-                value: '#',
+                value: "#",
             });
 
             current++;
@@ -326,17 +326,18 @@ function tokenizer(input: string) {
 
         const LETTER = /[a-z]/i;
 
-        if (LETTER.test(char)) { // TODO (al): Can every name in every language start with a character?
-            let value = '';
+        if (LETTER.test(char)) {
+            // TODO (al): Can every name in every language start with a character?
+            let value = "";
 
             do {
                 value += char;
                 char = input[++current];
-            } while (char && (LETTER.test(char) || NUMBER.test(char)))
+            } while (char && (LETTER.test(char) || NUMBER.test(char)));
 
             tokens.push({
                 type: TokenType.Name,
-                value
+                value,
             });
 
             continue;
@@ -346,6 +347,4 @@ function tokenizer(input: string) {
     return tokens;
 }
 
-export {
-    tokenizer,
-};
+export { tokenizer };
