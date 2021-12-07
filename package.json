@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./test/codestain.test.js",
-    "build": "gulp"
+    "build": "gulp",
+    "prettier:check": "npx prettier --check .",
+    "prettier:write": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "prettier": "2.5.1",
     "typescript": "^4.2.3"
   }
 }
