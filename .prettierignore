@@ -1,5 +1,3 @@
 # Ignore artifacts:
-.github
-.vscode
 build
 coverage
