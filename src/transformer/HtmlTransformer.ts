@@ -7,7 +7,7 @@ export class HtmlTransformer implements ITransformer {
         let transformed: Array<string> = [];
 
         transformed.push(
-            `<pre style="color:#fff; background: #1e1e1e; padding: 2rem; font-family: Consolas, Monospace;">`
+            `<pre style="color:#fff; background: #1e1e1e; padding: 2rem; font-family: Consolas, Monospace;">`,
         );
 
         const nodes = ast.body;
@@ -26,7 +26,7 @@ export class HtmlTransformer implements ITransformer {
                     return `<span style="color:#b5cea8">${node.value}</span>`;
                 case NodeType.CallExpression:
                     const transformedParams = node.params
-                        .map((param) => walk(param))
+                        .map(param => walk(param))
                         .join("");
 
                     return `<span style="color:#DCDCAA">${

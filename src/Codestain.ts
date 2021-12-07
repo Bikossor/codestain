@@ -3,7 +3,6 @@ import { createParser, createTransformer } from "./factories";
 import { tokenizer } from "./tokenizer";
 
 export const Codestain = (language: InputLanguage, input: string) => {
-
     const tokens = tokenizer(input);
 
     const parser = createParser(language);
@@ -13,5 +12,4 @@ export const Codestain = (language: InputLanguage, input: string) => {
     const output = transformer.transform(ast);
 
     return output;
-
 };
