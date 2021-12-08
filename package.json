@@ -4,7 +4,7 @@
   "description": "A static code highlighting tool.",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/codestain.test.js",
+    "test": "jest",
     "build": "gulp",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write ."
