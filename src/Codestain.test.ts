@@ -1,6 +1,5 @@
-const assert = require("assert");
-const { createParser } = require("../dist/factories");
-const { tokenizer } = require("../dist/tokenizer");
+import { createParser } from "./factories";
+import { tokenizer } from "./tokenizer";
 
 const input = `const sayHello = () => console.log("Hello World!");`;
 
@@ -26,86 +25,89 @@ const expectedTokens = [
   { type: "semicolon", value: ";" },
 ];
 
-const actualTokens = tokenizer(input);
+test("if tokens are as expected", () => {
+  const actualTokens = tokenizer(input);
 
-assert.deepStrictEqual(actualTokens, expectedTokens);
+  expect(actualTokens).toStrictEqual(expectedTokens);
+});
 
-const expectedAst = {
-  type: "Program",
-  body: [
-    {
-      type: "keyword",
-      value: "const",
-    },
-    {
-      type: "whitespace",
-      value: " ",
-    },
-    {
-      type: "identifier",
-      value: "sayHello",
-    },
-    {
-      type: "whitespace",
-      value: " ",
-    },
-    {
-      type: "operator",
-      value: "=",
-    },
-    {
-      type: "whitespace",
-      value: " ",
-    },
-    {
-      type: "call-expression",
-      name: null,
-      params: [],
-    },
-    {
-      type: "whitespace",
-      value: " ",
-    },
-    {
-      type: "operator",
-      value: "=",
-    },
-    {
-      type: "operator",
-      value: ">",
-    },
-    {
-      type: "whitespace",
-      value: " ",
-    },
-    {
-      type: "identifier",
-      value: "console",
-    },
-    {
-      type: "separator",
-      value: ".",
-    },
-    {
-      type: "call-expression",
-      name: "log",
-      params: [
-        {
-          type: "string-literal",
-          value: "Hello World!",
-        },
-      ],
-    },
-    {
-      type: "separator",
-      value: ";",
-    },
-  ],
-};
+test("if ast is as expected", () => {
+  const expectedAst = {
+    type: "Program",
+    body: [
+      {
+        type: "keyword",
+        value: "const",
+      },
+      {
+        type: "whitespace",
+        value: " ",
+      },
+      {
+        type: "identifier",
+        value: "sayHello",
+      },
+      {
+        type: "whitespace",
+        value: " ",
+      },
+      {
+        type: "operator",
+        value: "=",
+      },
+      {
+        type: "whitespace",
+        value: " ",
+      },
+      {
+        type: "call-expression",
+        name: null,
+        params: [],
+      },
+      {
+        type: "whitespace",
+        value: " ",
+      },
+      {
+        type: "operator",
+        value: "=",
+      },
+      {
+        type: "operator",
+        value: ">",
+      },
+      {
+        type: "whitespace",
+        value: " ",
+      },
+      {
+        type: "identifier",
+        value: "console",
+      },
+      {
+        type: "separator",
+        value: ".",
+      },
+      {
+        type: "call-expression",
+        name: "log",
+        params: [
+          {
+            type: "string-literal",
+            value: "Hello World!",
+          },
+        ],
+      },
+      {
+        type: "separator",
+        value: ";",
+      },
+    ],
+  };
 
-const javaScriptParser = createParser("JavaScript");
-const actualAst = javaScriptParser.parse(actualTokens);
+  const actualTokens = tokenizer(input);
+  const javaScriptParser = createParser("JavaScript");
+  const actualAst = javaScriptParser.parse(actualTokens);
 
-assert.deepStrictEqual(actualAst, expectedAst);
-
-console.log("All tests passed!");
+  expect(actualAst).toStrictEqual(expectedAst);
+});
