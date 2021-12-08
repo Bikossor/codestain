@@ -1,28 +1,30 @@
+import { NodeType, TokenType } from "./enums";
 import { createParser } from "./factories";
+import { AbstractSyntaxTree, Token } from "./Interfaces";
 import { tokenizer } from "./tokenizer";
 
 const input = `const sayHello = () => console.log("Hello World!");`;
 
-const expectedTokens = [
-  { type: "name", value: "const" },
-  { type: "whitespace", value: " " },
-  { type: "name", value: "sayHello" },
-  { type: "whitespace", value: " " },
-  { type: "equals", value: "=" },
-  { type: "whitespace", value: " " },
-  { type: "paren-left", value: "(" },
-  { type: "paren-right", value: ")" },
-  { type: "whitespace", value: " " },
-  { type: "equals", value: "=" },
-  { type: "greater-than", value: ">" },
-  { type: "whitespace", value: " " },
-  { type: "name", value: "console" },
-  { type: "dot", value: "." },
-  { type: "name", value: "log" },
-  { type: "paren-left", value: "(" },
-  { type: "string", value: "Hello World!" },
-  { type: "paren-right", value: ")" },
-  { type: "semicolon", value: ";" },
+const expectedTokens: Token[] = [
+  { type: TokenType.Name, value: "const" },
+  { type: TokenType.Whitespace, value: " " },
+  { type: TokenType.Name, value: "sayHello" },
+  { type: TokenType.Whitespace, value: " " },
+  { type: TokenType.Equals, value: "=" },
+  { type: TokenType.Whitespace, value: " " },
+  { type: TokenType.ParenthesisLeft, value: "(" },
+  { type: TokenType.ParenthesisRight, value: ")" },
+  { type: TokenType.Whitespace, value: " " },
+  { type: TokenType.Equals, value: "=" },
+  { type: TokenType.GreaterThan, value: ">" },
+  { type: TokenType.Whitespace, value: " " },
+  { type: TokenType.Name, value: "console" },
+  { type: TokenType.Dot, value: "." },
+  { type: TokenType.Name, value: "log" },
+  { type: TokenType.ParenthesisLeft, value: "(" },
+  { type: TokenType.String, value: "Hello World!" },
+  { type: TokenType.ParenthesisRight, value: ")" },
+  { type: TokenType.Semicolon, value: ";" },
 ];
 
 test("if tokens are as expected", () => {
@@ -32,74 +34,74 @@ test("if tokens are as expected", () => {
 });
 
 test("if ast is as expected", () => {
-  const expectedAst = {
+  const expectedAst: AbstractSyntaxTree = {
     type: "Program",
     body: [
       {
-        type: "keyword",
+        type: NodeType.Keyword,
         value: "const",
       },
       {
-        type: "whitespace",
+        type: NodeType.Whitespace,
         value: " ",
       },
       {
-        type: "identifier",
+        type: NodeType.Identifier,
         value: "sayHello",
       },
       {
-        type: "whitespace",
+        type: NodeType.Whitespace,
         value: " ",
       },
       {
-        type: "operator",
+        type: NodeType.Operator,
         value: "=",
       },
       {
-        type: "whitespace",
+        type: NodeType.Whitespace,
         value: " ",
       },
       {
-        type: "call-expression",
+        type: NodeType.CallExpression,
         name: null,
         params: [],
       },
       {
-        type: "whitespace",
+        type: NodeType.Whitespace,
         value: " ",
       },
       {
-        type: "operator",
+        type: NodeType.Operator,
         value: "=",
       },
       {
-        type: "operator",
+        type: NodeType.Operator,
         value: ">",
       },
       {
-        type: "whitespace",
+        type: NodeType.Whitespace,
         value: " ",
       },
       {
-        type: "identifier",
+        type: NodeType.Identifier,
         value: "console",
       },
       {
-        type: "separator",
+        type: NodeType.Separator,
         value: ".",
       },
       {
-        type: "call-expression",
+        type: NodeType.CallExpression,
         name: "log",
         params: [
           {
-            type: "string-literal",
+            type: NodeType.StringLiteral,
             value: "Hello World!",
           },
         ],
       },
       {
-        type: "separator",
+        type: NodeType.Separator,
         value: ";",
       },
     ],
