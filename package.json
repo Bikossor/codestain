@@ -4,7 +4,7 @@
   "description": "A static code highlighting tool.",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/codestain.test.js",
+    "test": "jest",
     "build": "gulp",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write ."
@@ -21,10 +21,16 @@
   },
   "homepage": "https://github.com/Bikossor/codestain#readme",
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "jest": "^27.4.3",
     "prettier": "2.5.1",
-    "typescript": "^4.2.3"
+    "ts-jest": "^27.1.0",
+    "typescript": "^4.5.2"
+  },
+  "jest": {
+    "preset": "ts-jest"
   }
 }
