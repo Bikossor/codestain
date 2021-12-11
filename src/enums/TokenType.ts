@@ -28,4 +28,6 @@ export enum TokenType {
   Ampersand = "ampersand",
   Backtick = "backtick",
   Hash = "hash",
+  Regex = "regex",
+  InlineComment = "inline-comment",
 }

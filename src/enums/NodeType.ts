@@ -9,4 +9,6 @@ export enum NodeType {
   Identifier = "identifier",
   Operator = "operator",
   Separator = "separator",
+  Regex = "regex",
+  InlineComment = "inline-comment",
 }
