@@ -112,6 +112,24 @@ export class JavaScriptParser implements IParser {
         };
       }
 
+      if (token.type === TokenType.Regex) {
+        current++;
+
+        return {
+          type: NodeType.Regex,
+          value: token.value,
+        };
+      }
+
+      if (token.type === TokenType.InlineComment) {
+        current++;
+
+        return {
+          type: NodeType.InlineComment,
+          value: token.value,
+        };
+      }
+
       if (token.type === TokenType.ParenthesisLeft) {
         token = tokens[++current];
 

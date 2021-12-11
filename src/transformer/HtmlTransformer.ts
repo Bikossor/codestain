@@ -34,6 +34,10 @@ export class HtmlTransformer implements ITransformer {
           }(${transformedParams})</span>`;
         case NodeType.Separator:
           return `<span style="color:lime">${node.value}</span>`;
+        case NodeType.Regex:
+          return `<span style="color:red">${node.value}</span>`;
+        case NodeType.InlineComment:
+          return `<span style="color:grey">${node.value}</span>`;
         default:
           return node.value;
       }

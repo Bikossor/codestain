@@ -128,6 +128,43 @@ function tokenizer(input: string) {
       continue;
     }
 
+    // Test for slashes in general
+    if (char === "/") {
+      let regexValue = "";
+      char = input[++current];
+
+      // If the next character is another "/" that means that this guy is an inline comment
+      if (char === "/") {
+        let commentValue = "";
+        char = input[++current];
+
+        while (char !== "\n") {
+          commentValue += char;
+          char = input[++current];
+        }
+
+        tokens.push({
+          type: TokenType.InlineComment,
+          value: `//${commentValue}`,
+        });
+
+        continue;
+      }
+
+      while (char !== "/") {
+        regexValue += char;
+        char = input[++current];
+      }
+
+      char = input[++current];
+      tokens.push({
+        type: TokenType.Regex,
+        value: `/${regexValue}/`,
+      });
+
+      continue;
+    }
+
     if (char === "/") {
       tokens.push({
         type: TokenType.Slash,
