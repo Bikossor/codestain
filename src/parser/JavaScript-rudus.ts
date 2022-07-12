@@ -7,6 +7,7 @@ import {
   whitespace,
   between,
 } from "rudus";
+import { IParser } from "../Interfaces";
 
 const betweenDoubleQuotes = between(string('"'));
 const optionalWhitespace = optional(whitespace());
@@ -41,10 +42,8 @@ const variableParser = sequenceOf([
   variableValue.map(state => `<span style="color:blue">${state.result}</span>`),
 ]);
 
-const parserResult = variableParser.run("const isCool = null");
-
-if (parserResult.isError) {
-  console.log(parserResult.errorMessage);
-} else {
-  console.log(parserResult.result);
+export class JavaScriptRudusParser implements IParser {
+  parse(input: string) {
+    return variableParser.run(input);
+  }
 }
