@@ -1,6 +1,5 @@
-import { Token } from ".";
-import { AbstractSyntaxTree } from "./AbstractSyntaxTree";
+import { ParserState } from "rudus/dist/types/ParserState";
 
 export interface IParser {
-  parse(tokens: Array<Token>): AbstractSyntaxTree;
+  parse(input: string): ParserState; // TODO: maybe use a generic version of ParserState in the future
 }
