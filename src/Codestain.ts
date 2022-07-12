@@ -1,15 +1,11 @@
 import { InputLanguage } from "./types";
 import { createParser, createTransformer } from "./factories";
-import { tokenizer } from "./tokenizer";
 
 export const Codestain = (language: InputLanguage, input: string) => {
-  const tokens = tokenizer(input);
-
   const parser = createParser(language);
-  const ast = parser.parse(tokens);
+  const ast = parser.parse(input);
 
-  const transformer = createTransformer("HTML");
-  const output = transformer.transform(ast);
+  console.log(ast);
 
-  return output;
+  // TODO: transform result of parser here
 };
