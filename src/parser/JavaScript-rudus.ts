@@ -8,8 +8,6 @@ import {
   between,
 } from "rudus";
 
-console.time();
-
 const betweenDoubleQuotes = between(string('"'));
 const optionalWhitespace = optional(whitespace());
 
@@ -44,8 +42,6 @@ const variableParser = sequenceOf([
 ]);
 
 const parserResult = variableParser.run("const isCool = null");
-
-console.timeEnd();
 
 if (parserResult.isError) {
   console.log(parserResult.errorMessage);
