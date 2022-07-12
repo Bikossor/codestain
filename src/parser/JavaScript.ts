@@ -42,7 +42,7 @@ const variableParser = sequenceOf([
   variableValue.map(state => `<span style="color:blue">${state.result}</span>`),
 ]);
 
-export class JavaScriptRudusParser implements IParser {
+export class JavaScriptParser implements IParser {
   parse(input: string) {
     return variableParser.run(input);
   }

@@ -1,1 +1,1 @@
-export { JavaScriptRudusParser } from "./JavaScript-rudus";
+export { JavaScriptParser } from "./JavaScript";
