@@ -27,11 +27,11 @@ const literalNumber = regex(/^(\d+\.)?\d+$|^0b[0-1]+(n)?$/);
 const literalString = betweenDoubleQuotes(word);
 
 const variableValue = anyOf([
-  literalBool,
-  literalString,
-  literalNumber,
-  literalUndefined,
-  literalNull,
+  literalBool.map(state => [NodeType.BooleanLiteral, state.result]),
+  literalString.map(state => [NodeType.StringLiteral, state.result]),
+  literalNumber.map(state => [NodeType.NumberLiteral, state.result]),
+  literalUndefined.map(state => [NodeType.Identifier, state.result]),
+  literalNull.map(state => [NodeType.Identifier, state.result]),
 ]);
 
 const variableParser = sequenceOf([
@@ -41,7 +41,7 @@ const variableParser = sequenceOf([
   optionalWhitespace,
   equalSign.map(state => [NodeType.Operator, state.result]),
   optionalWhitespace,
-  variableValue.map(state => [NodeType.Identifier, state.result]),
+  variableValue,
 ]);
 
 export class JavaScriptParser implements IParser {
