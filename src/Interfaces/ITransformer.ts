@@ -1,5 +1,5 @@
-import { AbstractSyntaxTree } from ".";
+import { NodeType } from "../enums";
 
 export interface ITransformer {
-  transform(ast: AbstractSyntaxTree): string;
+  transform(ast: Array<[NodeType, string]>): string;
 }
