@@ -11,7 +11,10 @@ import { NodeType } from "../enums";
 import { IParser } from "../Interfaces";
 
 const betweenDoubleQuotes = between(string('"'));
-const optionalWhitespace = optional(whitespace());
+const optionalWhitespace = optional(whitespace()).map(state => [
+  NodeType.Whitespace,
+  state.result,
+]);
 
 const declarationKeyword = regex(/^var|let|const/);
 const word = regex(/\w+/); // word
