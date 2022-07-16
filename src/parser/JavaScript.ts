@@ -20,7 +20,7 @@ const declarationKeyword = regex(/^var|let|const/);
 const word = regex(/\w+/); // word
 const equalSign = string("=");
 
-const literalBool = regex(/true|false/);
+const literalBool = regex(/^true|false$/);
 const literalUndefined = regex(/undefined/);
 const literalNull = regex(/null/);
 const literalNumber = regex(/^(\d+\.)?\d+$|^0b[0-1]+(n)?$/);
