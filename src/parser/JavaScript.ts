@@ -7,6 +7,7 @@ import {
   whitespace,
   between,
 } from "rudus";
+import { NodeType } from "../enums";
 import { IParser } from "../Interfaces";
 
 const betweenDoubleQuotes = between(string('"'));
@@ -31,15 +32,13 @@ const variableValue = anyOf([
 ]);
 
 const variableParser = sequenceOf([
-  declarationKeyword.map(
-    state => `<span style="color:red">${state.result}</span>`,
-  ),
+  declarationKeyword.map(state => [NodeType.Keyword, state.result]),
   optionalWhitespace,
-  word.map(state => `<span style="color:green">${state.result}</span>`),
+  word.map(state => [NodeType.Identifier, state.result]),
   optionalWhitespace,
-  equalSign.map(state => `<span style="color:grey">${state.result}</span>`),
+  equalSign.map(state => [NodeType.Operator, state.result]),
   optionalWhitespace,
-  variableValue.map(state => `<span style="color:blue">${state.result}</span>`),
+  variableValue.map(state => [NodeType.Identifier, state.result]),
 ]);
 
 export class JavaScriptParser implements IParser {
