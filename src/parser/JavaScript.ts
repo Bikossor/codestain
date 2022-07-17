@@ -16,6 +16,11 @@ const optionalWhitespace = optional(whitespace()).map(state => [
   state.result,
 ]);
 
+const optionalSemicolon = regex(/;?/).map(state => [
+  NodeType.Separator,
+  state.result,
+]);
+
 const declarationKeyword = regex(/^var|let|const/);
 const word = regex(/\w+/); // word
 const equalSign = string("=");
@@ -42,6 +47,7 @@ const variableParser = sequenceOf([
   equalSign.map(state => [NodeType.Operator, state.result]),
   optionalWhitespace,
   variableValue,
+  optionalSemicolon,
 ]);
 
 export class JavaScriptParser implements IParser {
