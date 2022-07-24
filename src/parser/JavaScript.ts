@@ -16,7 +16,7 @@ const optionalWhitespace = optional(whitespace()).map(state => [
   state.result,
 ]);
 
-const optionalSemicolon = regex(/;?/).map(state => [
+const optionalSemicolon = optional(string(";")).map(state => [
   NodeType.Separator,
   state.result,
 ]);
