@@ -6,11 +6,15 @@ import {
   optional,
   whitespace,
   between,
+  lazy,
 } from "rudus";
 import { NodeType } from "../enums";
 import { IParser } from "../Interfaces";
 
 const betweenDoubleQuotes = between(string('"'));
+const betweenParanthesis = between(string("("), string(")"));
+const betweenBraces = between(string("{"), string("}"));
+
 const optionalWhitespace = optional(whitespace()).map(state => [
   NodeType.Whitespace,
   state.result,
@@ -24,6 +28,7 @@ const optionalSemicolon = optional(string(";")).map(state => [
 const declarationKeyword = regex(/^var|let|const/);
 const word = regex(/\w+/); // word
 const equalSign = string("=");
+const bigArrow = string("=>");
 
 const literalBool = regex(/^true|false$/);
 const literalUndefined = regex(/undefined/);
@@ -31,7 +36,18 @@ const literalNull = regex(/null/);
 const literalNumber = regex(/^(\d+\.)?\d+$|^0b[0-1]+(n)?$/);
 const literalString = betweenDoubleQuotes(word);
 
+const functionBody = lazy(() => literalNumber); // for testing purposes
+
+const arrowFunctionExpression = sequenceOf([
+  betweenParanthesis(optional(word)),
+  optionalWhitespace,
+  bigArrow,
+  optionalWhitespace,
+  betweenBraces(optional(functionBody)),
+]);
+
 const variableValue = anyOf([
+  arrowFunctionExpression.map(state => [NodeType.CallExpression, state.result]),
   literalBool.map(state => [NodeType.BooleanLiteral, state.result]),
   literalString.map(state => [NodeType.StringLiteral, state.result]),
   literalNumber.map(state => [NodeType.NumberLiteral, state.result]),
