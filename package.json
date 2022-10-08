@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "gulp",
+    "build": "node scripts/build.js",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write ."
   },
@@ -22,9 +22,6 @@
   "homepage": "https://github.com/Bikossor/codestain#readme",
   "devDependencies": {
     "@types/jest": "^27.0.3",
-    "del": "^6.0.0",
-    "gulp": "^4.0.2",
-    "gulp-typescript": "^6.0.0-alpha.1",
     "jest": "^27.4.3",
     "prettier": "2.5.1",
     "ts-jest": "^27.1.0",
