@@ -31,6 +31,6 @@
     "preset": "ts-jest"
   },
   "dependencies": {
-    "rudus": "^1.0.0-alpha.10"
+    "rudus": "^1.0.0-alpha.11"
   }
 }
