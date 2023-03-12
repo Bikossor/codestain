@@ -28,6 +28,6 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "rudus": "^1.0.0-alpha.11"
+    "rudus": "^1.0.0-alpha.12"
   }
 }
