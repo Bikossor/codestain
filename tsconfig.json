@@ -5,7 +5,7 @@
     "declaration": true,
     "outDir": "dist",
     "inlineSourceMap": true,
-    "types": ["@types/node"]
+    "types": ["@types/node", "@types/jest"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "src/**/*.test.ts"]
