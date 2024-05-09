@@ -1,3 +1,4 @@
+import { test, expect } from "vitest";
 import { NodeType, TokenType } from "./enums";
 import { createParser } from "./factories";
 import { AbstractSyntaxTree, Token } from "./Interfaces";
@@ -63,6 +64,7 @@ test("if ast is as expected", () => {
       },
       {
         type: NodeType.CallExpression,
+        // @ts-ignore-next-line
         name: null,
         params: [],
       },
