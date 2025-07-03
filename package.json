@@ -22,7 +22,7 @@
   "homepage": "https://github.com/Bikossor/codestain#readme",
   "devDependencies": {
     "@types/node": "22.13.11",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "typescript": "5.8.2",
     "vitest": "3.0.9"
   }
